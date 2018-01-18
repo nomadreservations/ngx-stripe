@@ -8,7 +8,8 @@ import { LazyStripeAPILoader, Status } from './api-loader.service';
 import {
   STRIPE_PUBLISHABLE_KEY,
   StripeJS,
-  STRIPE_OPTIONS
+  STRIPE_OPTIONS,
+  Options
 } from '../interfaces/stripe';
 import { Element } from '../interfaces/element';
 import { Elements, ElementsOptions } from '../interfaces/elements';
@@ -40,14 +41,14 @@ export class StripeService {
 
   constructor(
     @Inject(STRIPE_PUBLISHABLE_KEY) private key: string,
-    @Inject(STRIPE_OPTIONS) private options: string,
+    @Inject(STRIPE_OPTIONS) private options: Options,
     private loader: LazyStripeAPILoader,
     private window: WindowRef
   ) {
     this.changeKey(this.key, this.options).take(1).subscribe(() => {});
   }
 
-  public changeKey(key: string, options?: string): Observable<StripeJS> {
+  public changeKey(key: string, options?: Options): Observable<StripeJS> {
     const obs = this.loader
       .asStream()
       .filter((status: Status) => status.loaded === true)
