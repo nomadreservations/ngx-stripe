@@ -7,12 +7,12 @@ if [[ -z "${STATUS// }" ]]
 then
     mkdir -p demo/dist/api
     cp -r documentation/* demo/dist/api
-    sed -i "" '/\/dist/d' ./.gitignore
+    sed -i "" '/\/dist/d' ./demo/.gitignore
     git add .
     git commit -m "Edit .gitignore to publish"
     git push origin `git subtree split --prefix demo/dist master`:gh-pages --force
     git reset HEAD~
-    git checkout .gitignore
+    git checkout demo/.gitignore
 else
     printf "${RED}ERROR:${NC} Need clean working directory to publish\n"
 fi
