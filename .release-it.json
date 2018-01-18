@@ -1,0 +1,17 @@
+{
+  "non-interactive": true,
+  "buildCommand": "npm run build:release",
+  "afterReleaseCommand": "echo Successfully released ${version} to ${dist.repo}.",
+  "changelogCommand": "(tmpfile=`mktemp` && { git-release-notes [REV_RANGE] markdown | cat - CHANGELOG.md > $tmpfile && mv $tmpfile CHANGELOG.md; })",
+  "npm": {
+    "publishPath": "./dist"
+  },
+  "github": {
+    "release": false
+  },
+  "prompt": {
+    "src": {
+      "github": false
+    }
+  }
+}

@@ -1,0 +1,5 @@
+/**
+ * @license @nomadreservations/ngx-stripe
+ * UNLICENSED
+ * Copyright © 2017 Nomad Reservatoins, LLC. All Rights Reserved
+ */
