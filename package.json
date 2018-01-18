@@ -29,7 +29,7 @@
         "compodoc:watch": "compodoc -p tsconfig.json -w",
         "docs": "npm-run-all -s compodoc:serve",
         "docs:watch": "npm-run-all -p compodoc:serve compodoc:watch",
-        "docs:publish": "run -s demo:aot:yalc && bash deploy-docs.sh",
+        "docs:publish": "run-s demo:aot:yalc && bash deploy-docs.sh",
         "doctoc": "doctoc README.md --maxlevel 3",
         "watch": "npm-run-all -p build:watch docs",
         "postversion": "git push && git push --tags",
