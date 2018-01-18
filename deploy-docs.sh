@@ -5,7 +5,8 @@ NC='\033[0m' # No Color
 
 if [[ -z "${STATUS// }" ]]
 then
-    cp -r documentation/* demo/dist
+    mkdir -p demo/dist/api
+    cp -r documentation/* demo/dist/api
     sed -i "" '/\/dist/d' ./.gitignore
     git add .
     git commit -m "Edit .gitignore to publish"
