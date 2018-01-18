@@ -1,4 +1,12 @@
 
+* __fix(stripe.service): Fixes source output and options__
+
+    [Paul Ryan](mailto:paul@simplycomplex.co) - Thu, 18 Jan 2018 16:17:55 -0500
+    
+    
+
+
+
 * __docs: base for gh-pages__
 
     [Paul Ryan](mailto:paul@simplycomplex.co) - Thu, 18 Jan 2018 15:07:29 -0500
