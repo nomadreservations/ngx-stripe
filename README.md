@@ -1,3 +1,20 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [@nomadreservations/ngx-stripe](#nomadreservationsngx-stripe)
+  - [Features](#features)
+  - [Installation](#installation)
+  - [Using the library](#using-the-library)
+  - [StripeCardComponent](#stripecardcomponent)
+  - [Testing](#testing)
+  - [Building](#building)
+  - [Publishing](#publishing)
+  - [Documentation](#documentation)
+  - [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # @nomadreservations/ngx-stripe
 
 [![version](https://img.shields.io/npm/v/ngx-stripe.svg)](https://www.npmjs.com/package/@nomadreservations/ngx-stripe)
