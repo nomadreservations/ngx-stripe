@@ -30,9 +30,12 @@ import {
   isPii,
   isPiiData
 } from '../interfaces/token';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 @Injectable()
 export class StripeService {
+
+  public stripeChanged$: ReplaySubject<StripeJS> = new ReplaySubject();
   private stripe: StripeJS;
 
   constructor(
@@ -41,15 +44,7 @@ export class StripeService {
     private loader: LazyStripeAPILoader,
     private window: WindowRef
   ) {
-    this.loader
-      .asStream()
-      .filter((status: Status) => status.loaded === true)
-      .subscribe(() => {
-        const Stripe = (this.window.getNativeWindow() as any).Stripe;
-        this.stripe = this.options
-          ? (Stripe(this.key, this.options) as StripeJS)
-          : (Stripe(this.key) as StripeJS);
-      });
+    this.changeKey(this.key, this.options).take(1).subscribe(() => {});
   }
 
   public changeKey(key: string, options?: string): Observable<StripeJS> {
@@ -61,6 +56,7 @@ export class StripeService {
         this.stripe = options
           ? (Stripe(key, options) as StripeJS)
           : (Stripe(key) as StripeJS);
+        this.stripeChanged$.next(this.stripe);
         return this.stripe;
       })
       .publishLast()
@@ -70,9 +66,7 @@ export class StripeService {
   }
 
   public elements(options?: ElementsOptions): Observable<Elements> {
-    return this.loader
-      .asStream()
-      .filter((status: Status) => status.loaded === true)
+    return this.stripeChanged$
       .map(() => this.stripe.elements(options));
   }
 

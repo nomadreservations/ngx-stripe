@@ -6,3 +6,7 @@ $ cat .gitignore
 *.log
 *.tgz
 package-lock.json
+
+/build
+/.yalc
+yalc.lock

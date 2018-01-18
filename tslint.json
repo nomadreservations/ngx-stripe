@@ -1,70 +1,162 @@
 {
-    "extends": "tslint:recommended",
     "rulesDirectory": [
-        "node_modules/codelyzer"
+      "node_modules/codelyzer"
     ],
     "rules": {
-        "angular-whitespace": [
-            true,
-            "check-interpolation",
-            "check-pipe"
-        ],
-        "arrow-parens": [true, "ban-single-arg-parens"],
-        "banana-in-box": true,
-        "templates-no-negated-async": true,
-        "directive-selector": [
-            true,
-            "attribute",
-            [
-                "dir-prefix1",
-                "dir-prefix2"
-            ],
-            "camelCase"
-        ],
-        "component-selector": [
-            true,
-            "element",
-            [
-                "ngx-stripe"
-            ],
-            "kebab-case"
-        ],
-        "use-input-property-decorator": true,
-        "use-output-property-decorator": true,
-        "use-host-property-decorator": true,
-        "no-attribute-parameter-decorator": true,
-        "no-input-rename": true,
-        "no-output-rename": true,
-        "no-forward-ref": true,
-        "use-view-encapsulation": false,
-        "use-life-cycle-interface": true,
-        "use-pipe-transform-interface": true,
-        "pipe-naming": [
-            true,
-            "camelCase",
-            "Pipe"
-        ],
-        "component-class-suffix": [
-            true,
-            "Component"
-        ],
-        "directive-class-suffix": [
-            true,
-            "Directive"
-        ],
-        "interface-name": [true, "never-prefix"],
-        "templates-use-public": true,
-        "no-access-missing-member": true,
-        "invoke-injectable": true,
-        "template-to-ng-template": true,
-        "ordered-imports": [
-            false
-        ],
-        "quotemark": [
-            false
-        ],
-        "trailing-comma": [
-            false
-        ]
+      "member-access": false,
+      "member-ordering": [
+        true,
+        {
+          "order": [
+            "public-static-field",
+            "protected-static-field",
+            "private-static-field",
+            "public-instance-field",
+            "protected-instance-field",
+            "private-instance-field",
+            "public-instance-method",
+            "protected-instance-method",
+            "private-instance-method"
+          ]
+        }
+      ],
+      "no-any": false,
+      "no-inferrable-types": false,
+      "no-internal-module": true,
+      "no-var-requires": false,
+      "typedef": false,
+      "typedef-whitespace": [
+        true,
+        {
+          "call-signature": "nospace",
+          "index-signature": "nospace",
+          "parameter": "nospace",
+          "property-declaration": "nospace",
+          "variable-declaration": "nospace"
+        },
+        {
+          "call-signature": "space",
+          "index-signature": "space",
+          "parameter": "space",
+          "property-declaration": "space",
+          "variable-declaration": "space"
+        }
+      ],
+      "ban": false,
+      "curly": false,
+      "forin": true,
+      "label-position": true,
+      "no-arg": true,
+      "no-bitwise": true,
+      "no-conditional-assignment": true,
+      "no-console": [
+        true,
+        "debug",
+        "info",
+        "time",
+        "timeEnd",
+        "trace"
+      ],
+      "no-construct": true,
+      "no-debugger": true,
+      "no-duplicate-variable": true,
+      "no-empty": false,
+      "no-eval": true,
+      "no-null-keyword": true,
+      "no-shadowed-variable": true,
+      "no-string-literal": false,
+      "no-switch-case-fall-through": true,
+      "no-unused-expression": true,
+      "no-unused-variable": true,
+      "no-use-before-declare": true,
+      "no-var-keyword": true,
+      "radix": true,
+      "switch-default": true,
+      "triple-equals": [
+        true,
+        "allow-undefined-check"
+      ],
+      "eofline": false,
+      "indent": [
+        true,
+        "spaces"
+      ],
+      "max-line-length": false,
+      "no-require-imports": false,
+      "no-trailing-whitespace": true,
+      "object-literal-sort-keys": false,
+      "trailing-comma": [
+        true,
+        {
+          "multiline": false,
+          "singleline": "never"
+        }
+      ],
+      "align": false,
+      "class-name": true,
+      "comment-format": [
+        true,
+        "check-space"
+      ],
+      "interface-name": false,
+      "jsdoc-format": true,
+      "no-consecutive-blank-lines": false,
+      "no-constructor-vars": false,
+      "one-line": [
+        true,
+        "check-open-brace",
+        "check-catch",
+        "check-else",
+        "check-finally",
+        "check-whitespace"
+      ],
+      "quotemark": [
+        true,
+        "single",
+        "avoid-escape"
+      ],
+      "semicolon": [
+        true,
+        "always"
+      ],
+      "variable-name": [
+        true,
+        "check-format",
+        "allow-leading-underscore",
+        "ban-keywords"
+      ],
+      "whitespace": [
+        true,
+        "check-branch",
+        "check-decl",
+        "check-operator",
+        "check-separator",
+        "check-type"
+      ],
+      "import-destructuring-spacing": true,
+      "directive-selector-name": [
+        false,
+        "kebab-case"
+      ],
+      "directive-selector-prefix": [
+        false,
+        "du"
+      ],
+      "use-input-property-decorator": true,
+      "use-output-property-decorator": true,
+      "use-host-property-decorator": false,
+      "no-attribute-parameter-decorator": true,
+      "no-input-rename": true,
+      "no-output-rename": true,
+      "no-forward-ref": true,
+      "use-life-cycle-interface": true,
+      "use-pipe-transform-interface": true,
+      "pipe-naming": [
+        false,
+        "camelCase",
+        "du"
+      ],
+      "component-class-suffix": true,
+      "directive-class-suffix": false
     }
-}
+  }
