@@ -7,6 +7,7 @@ if [[ -z "${STATUS// }" ]]
 then
     mkdir -p demo/dist/api
     cp -r documentation/* demo/dist/api
+    sed -i "" 's/base href="\/"/base href="\/ngx-stripe\/"/' ./demo/dist/index.html
     sed -i "" '/\/dist/d' ./demo/.gitignore
     git add .
     git commit -m "Edit .gitignore to publish"

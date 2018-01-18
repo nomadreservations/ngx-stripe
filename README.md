@@ -26,15 +26,17 @@
 
 * Stripe Service
 * Lazy script loading
+* AoT compliant
+* SSR fallback
 
 ## Installation
 
 To install this library, run:
 
 ```bash
-$ npm install ngx-stripe --save
+$ npm install @nomadreservations/ngx-stripe --save
 or
-$ yarn add ngx-stripe
+$ yarn add @nomadreservations/ngx-stripe
 ```
 
 ## Using the library
