@@ -1,6 +1,6 @@
 {
     "name": "@nomadreservations/ngx-stripe",
-    "version": "1.0.0-rc.0",
+    "version": "1.0.0-rc.1",
     "description": "@angular wrapper for StripeJS",
     "main": "./bundles/ngx-stripe.umd.js",
     "module": "./esm5/ngx-stripe.js",
