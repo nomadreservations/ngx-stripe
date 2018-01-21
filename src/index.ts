@@ -6,8 +6,9 @@ export { StripeCardComponent } from './stripe-card.component';
 export { StripeService } from './services/stripe.service';
 export { LazyStripeAPILoader } from './services/api-loader.service';
 
-export { WindowRef } from './services/window-ref';
-export { DocumentRef } from './services/document-ref';
+export { WindowRef } from './services/window-ref.service';
+export { DocumentRef } from './services/document-ref.service';
+export { PlatformService } from './services/platform.service';
 
 export {
   Element,

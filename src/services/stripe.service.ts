@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 
-import { WindowRef } from './window-ref';
+import { WindowRef } from './window-ref.service';
 import { LazyStripeAPILoader, Status } from './api-loader.service';
 
 import {
@@ -32,6 +32,7 @@ import {
   isPiiData
 } from '../interfaces/token';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { PlatformService } from './platform.service';
 
 @Injectable()
 export class StripeService {
@@ -43,16 +44,20 @@ export class StripeService {
     @Inject(STRIPE_PUBLISHABLE_KEY) private key: string,
     @Inject(STRIPE_OPTIONS) private options: Options,
     private loader: LazyStripeAPILoader,
-    private window: WindowRef
+    private window: WindowRef,
+    private _platform: PlatformService
   ) {
     this.changeKey(this.key, this.options).take(1).subscribe(() => {});
   }
 
-  public changeKey(key: string, options?: Options): Observable<StripeJS> {
+  public changeKey(key: string, options?: Options): Observable<StripeJS | undefined> {
     const obs = this.loader
       .asStream()
       .filter((status: Status) => status.loaded === true)
       .map(() => {
+        if (!this.window.getNativeWindow()) {
+          return;
+        }
         const Stripe = (this.window.getNativeWindow() as any).Stripe;
         this.stripe = options
           ? (Stripe(key, options) as StripeJS)

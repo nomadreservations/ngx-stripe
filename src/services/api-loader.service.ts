@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import { WindowRef } from './window-ref';
-import { DocumentRef } from './document-ref';
+import { WindowRef } from './window-ref.service';
+import { DocumentRef } from './document-ref.service';
+import { PlatformService } from './platform.service';
 
 export interface Status {
   loaded: boolean;
@@ -20,7 +21,11 @@ export class LazyStripeAPILoader {
     loading: false
   });
 
-  constructor(private window: WindowRef, private document: DocumentRef) {}
+  constructor(
+    private window: WindowRef,
+    private document: DocumentRef,
+    private _platform: PlatformService
+  ) {}
 
   public asStream(): Observable<Status> {
     this.load();
@@ -32,6 +37,9 @@ export class LazyStripeAPILoader {
   }
 
   public load() {
+    if (this._platform.isServer) {
+      return;
+    }
     if (this.window.getNativeWindow().hasOwnProperty('Stripe')) {
       this.status.next({
         error: false,
