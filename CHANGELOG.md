@@ -1,4 +1,12 @@
 
+* __feat(all): SSR ready__
+
+    [Paul Ryan](mailto:paul@simplycomplex.co) - Sun, 21 Jan 2018 17:20:30 -0500
+    
+    
+
+
+
 * __fix(stripe.service): Fixes source output and options__
 
     [Paul Ryan](mailto:paul@simplycomplex.co) - Thu, 18 Jan 2018 16:17:55 -0500
