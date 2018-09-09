@@ -10,15 +10,15 @@ import { PlatformService } from './services/platform.service';
 import { Options, STRIPE_PUBLISHABLE_KEY, STRIPE_OPTIONS } from './interfaces/stripe';
 import { StripeCardComponent } from './stripe-card.component';
 
-import 'rxjs/add/observable/combineLatest';
-import 'rxjs/add/observable/fromPromise';
 
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/take';
-import 'rxjs/add/operator/publishLast';
+
+
+
+
+
+
+
+
 
 export interface NgxStripeModuleOptions {
   publishableKey?: string;

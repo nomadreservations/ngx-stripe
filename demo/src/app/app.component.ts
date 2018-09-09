@@ -36,6 +36,8 @@ export class AppComponent {
     locale: 'en'
   };
 
+  token: any = {};
+
   constructor(
     private _stripe: StripeService
   ) {}
@@ -63,7 +65,7 @@ export class AppComponent {
       address_zip: 'VOE 1H0',
       address_country: 'CA'
     }).subscribe(result => {
-      console.log(result);
+      this.token = result;
     });
   }
 }

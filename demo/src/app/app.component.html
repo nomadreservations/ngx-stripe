@@ -27,4 +27,15 @@
     <button mat-raised-button (click)="getCardToken()" color="primary" [disabled]="!complete">Get Card Token</button>
 
   </mat-card>
+
+  <mat-card>
+    <mat-card-title-group>
+        <mat-card-title>Token</mat-card-title>
+    </mat-card-title-group>
+    <mat-card-content>
+      <pre>
+        {{token | json}}
+      </pre>
+    </mat-card-content>
+  </mat-card>
 </div>
