@@ -1,0 +1,23 @@
+{
+  "name": "@nomadreservations/ngx-stripe",
+  "version": "1.1.0",
+  "description": "@angular wrapper for StripeJS",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nomadreservations/ngx-stripe.git"
+  },
+  "bugs": {
+      "url": "https://github.com/nomadreservations/ngx-stripe/issues"
+  },
+  "homepage": "https://github.com/nomadreservations/ngx-stripe",
+  "keywords": [
+      "angular",
+      "javascript",
+      "typescript"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^7.0.0",
+    "@angular/core": "^7.0.0"
+  }
+}

@@ -1,0 +1,83 @@
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+$mdi-font-path: "../node_modules/mdi/fonts";
+@import '~mdi/scss/materialdesignicons';
+
+body {
+	font-family: Raleway;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+	font-family: Raleway;
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 26.4px;
+}
+h3 {
+	font-family: Raleway;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 15.4px;
+}
+p {
+	font-family: Raleway;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+}
+blockquote {
+	font-family: Raleway;
+	font-size: 21px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 30px;
+}
+pre {
+	font-family: Raleway;
+	font-size: 13px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 18.5714px;
+}
+
+
+app-root {
+  > .container {
+    max-width: 1400px;
+    margin: 2rem auto;
+    @media screen and (max-width: 600px) {
+      margin: 0;
+    }
+  }
+}
+.mat-toolbar-row {
+  flex-wrap: wrap;
+}
+
+.fill-space {
+	flex-grow: 1;
+}
+
+
+.mat-button-wrapper {
+  .mat-icon.mdi {
+    &:before {
+      line-height: 24px;
+      font-size: 24px;
+      display: block;
+    }
+  }
+}
+
+.mat-form-field {
+	width: 100%;
+}
