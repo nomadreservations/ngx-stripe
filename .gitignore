@@ -1,12 +1,42 @@
-$ cat .gitignore
-/node_modules
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
 /dist
 /documentation
-/.vscode
-*.log
-*.tgz
-package-lock.json
+/tmp
+/out-tsc
 
-/build
-/.yalc
-yalc.lock
+# dependencies
+/node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+src/environments/environment.local.ts
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db

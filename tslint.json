@@ -140,7 +140,11 @@
       ],
       "directive-selector-prefix": [
         false,
-        "du"
+        "ngx"
+      ],
+      "compontent-selector-prefix": [
+        false,
+        "ngx"
       ],
       "use-input-property-decorator": true,
       "use-output-property-decorator": true,
@@ -154,7 +158,7 @@
       "pipe-naming": [
         false,
         "camelCase",
-        "du"
+        "ngx"
       ],
       "component-class-suffix": true,
       "directive-class-suffix": false
