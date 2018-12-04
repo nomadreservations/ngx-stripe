@@ -57,7 +57,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 // Import your library
-import { NgxStripeModule } from 'ngx-stripe';
+import { NgxStripeModule } from '@nomadreservations/ngx-stripe';
 
 @NgModule({
   declarations: [
@@ -99,7 +99,7 @@ by using a ViewChild, the public method getCard()
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
-import { StripeService, StripeCardComponent, ElementOptions, ElementsOptions } from "ngx-stripe";
+import { StripeService, StripeCardComponent, ElementOptions, ElementsOptions } from "@nomadreservations/ngx-stripe";
 
 
 @Component({
