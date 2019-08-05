@@ -5,7 +5,19 @@ import { Element } from '../interfaces/element';
 import { Elements, ElementsOptions } from '../interfaces/elements';
 import { isSourceData, SourceData, SourceParams, SourceResult } from '../interfaces/sources';
 import { Options, StripeJS, STRIPE_OPTIONS, STRIPE_PUBLISHABLE_KEY } from '../interfaces/stripe';
-import { BankAccount, BankAccountData, CardDataOptions, isBankAccount, isBankAccountData, isPii, isPiiData, Pii, PiiData, TokenResult } from '../interfaces/token';
+import {
+  BankAccount,
+  BankAccountData,
+  CardDataOptions,
+  isBankAccount,
+  isBankAccountData,
+  isPii,
+  isPiiData,
+  Pii,
+  PiiData, SetupIntentData,
+  SetupIntentResult,
+  TokenResult
+} from '../interfaces/token';
 import { LazyStripeAPILoader, Status } from './api-loader.service';
 import { PlatformService } from './platform.service';
 import { WindowRef } from './window-ref.service';
@@ -70,6 +82,16 @@ export class StripeService {
         this.stripe.createToken(a as Element, b as CardDataOptions | undefined)
       );
     }
+  }
+
+  public handleCardSetup(
+    clientSecret: string,
+    element: Element,
+    cardSetupOptions?: SetupIntentData | undefined
+  ): Observable<SetupIntentResult> {
+    return observableFrom(
+      this.stripe.handleCardSetup(clientSecret, element, cardSetupOptions)
+    );
   }
 
   public createSource(
