@@ -8,7 +8,8 @@ import {
   BankAccount,
   BankAccountData,
   Pii,
-  PiiData
+  PiiData,
+  SetupIntentData, SetupIntentResult,
 } from './token';
 import { SourceData, SourceResult, SourceParams } from './sources';
 
@@ -27,6 +28,7 @@ export interface StripeJS {
   createToken(pii: Pii, piiData: PiiData): Promise<TokenResult>;
   createSource(el: Element, sourceData?: SourceData): Promise<SourceResult>;
   createSource(sourceData: SourceData): Promise<SourceResult>;
+  handleCardSetup(clientSecret: string, el: Element, cardSetupOptions?: SetupIntentData): Promise<SetupIntentResult>;
   retrieveSource(source: SourceParams): Promise<SourceResult>;
 }
 

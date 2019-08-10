@@ -113,3 +113,59 @@ export function isPii(pii: any): pii is Pii {
 export function isPiiData(piiData: any): piiData is PiiData {
   return 'personal_id_number' in piiData;
 }
+
+export interface SetupIntent {
+  id: string;
+  object: 'setup_intent';
+  application?: string;
+  cancellation_reason?: 'abandoned' | 'requested_by_customer' | 'duplicate';
+  client_secret?: string;
+  created: number;
+  customer?: string;
+  description?: string;
+  last_setup_error?: Error;
+  livemode: boolean;
+  metadata: { [key: string]: any };
+  next_action: {
+    type: 'redirect_to_url' | 'use_stripe_sdk';
+    redirect_to_url?: {
+      return_url: string;
+      url: string;
+    };
+    use_stripe_sdk:  { [key: string]: any };
+  };
+  on_behalf_of?: string;
+  payment_method?: string;
+  payment_method_options?: { [key: string]: any };
+  status:
+    'requires_payment_method' |
+    'requires_confirmation' |
+    'requires_action' |
+    'processing' |
+    'canceled' |
+    'succeeded';
+  usage: 'on_session' | 'off_session';
+}
+
+export interface SetupIntentResult {
+  setupIntent?: SetupIntent;
+  error?: Error;
+}
+
+export interface SetupIntentData {
+  payment_method_data?: {
+    billing_details?: {
+      address?: {
+        city?: string
+        country?: string
+        line1?: string
+        line2?: string
+        postal_code?: string
+        state?: string
+      }
+      email?: string
+      name?: string
+      phone?: string
+    };
+  };
+}
