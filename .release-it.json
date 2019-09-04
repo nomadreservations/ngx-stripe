@@ -4,7 +4,7 @@
   "afterReleaseCommand": "echo Successfully released ${version} to ${dist.repo}.",
   "changelogCommand": "(tmpfile=`mktemp` && { git-release-notes [REV_RANGE] markdown | cat - CHANGELOG.md > $tmpfile && mv $tmpfile CHANGELOG.md; })",
   "npm": {
-    "publishPath": "./dist"
+    "publishPath": "./dist/ngx-stripe"
   },
   "github": {
     "release": false

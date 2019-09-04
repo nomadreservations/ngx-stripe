@@ -1,4 +1,5 @@
 {
+  "$schema": "./node_modules/ng-packagr/package.schema.json",
   "name": "@nomadreservations/ngx-stripe",
   "version": "1.1.0",
   "description": "@angular wrapper for StripeJS",
@@ -23,6 +24,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "build:release": "ng-packagr -p package.json",
     "release": "release-it",
     "release:major": "npm run release -- major -n",
     "release:minor": "npm run release -- minor -n",
@@ -35,8 +37,13 @@
     "docs:publish": "run-s demo:aot:yalc && bash deploy-docs.sh",
     "doctoc": "doctoc README.md --maxlevel 3"
   },
+  "peerDependencies": {
+    "@angular/common": "^7.0.0",
+    "@angular/core": "^7.0.0"
+  },
   "private": true,
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "@angular/animations": "~7.0.0",
     "@angular/cdk": "~7.1.0",
     "@angular/common": "~7.0.0",
@@ -53,9 +60,7 @@
     "mdi": "^2.2.43",
     "release-it": "^8.2.0",
     "rxjs": "~6.3.3",
-    "zone.js": "~0.8.26"
-  },
-  "devDependencies": {
+    "zone.js": "~0.8.26",
     "@angular-devkit/build-angular": "~0.10.0",
     "@angular-devkit/build-ng-packagr": "~0.10.0",
     "@angular/cli": "~7.0.5",
@@ -82,5 +87,11 @@
     "tslib": "^1.9.0",
     "tslint": "~5.11.0",
     "typescript": "~3.1.6"
+  },
+  "ngPackage": {
+    "dest": "dist/ngx-stripe",
+    "lib": {
+      "entryFile": "projects/ngx-stripe/src/public_api.ts"
+    }
   }
 }
