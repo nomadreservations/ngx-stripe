@@ -9,12 +9,17 @@ import {
   BankAccount,
   BankAccountData,
   CardDataOptions,
+  CardPaymentData,
+  ConfirmIntentData,
+  ConfirmSetupIntentData,
   isBankAccount,
   isBankAccountData,
   isPii,
   isPiiData,
+  PaymentIntentResult,
   Pii,
-  PiiData, SetupIntentData,
+  PiiData,
+  SetupIntentData,
   SetupIntentResult,
   TokenResult
 } from '../interfaces/token';
@@ -39,10 +44,7 @@ export class StripeService {
       .subscribe(() => {});
   }
 
-  public changeKey(
-    key: string,
-    options?: Options
-  ): Observable<StripeJS | undefined> {
+  public changeKey(key: string, options?: Options): Observable<StripeJS | undefined> {
     const obs = this.loader.asStream().pipe(
       filter((status: Status) => status.loaded === true),
       map(() => {
@@ -51,9 +53,7 @@ export class StripeService {
         }
         const Stripe = (this.window.getNativeWindow() as any).Stripe;
         if (key) {
-          this.stripe = options
-            ? (Stripe(key, options) as StripeJS)
-            : (Stripe(key) as StripeJS);
+          this.stripe = options ? (Stripe(key, options) as StripeJS) : (Stripe(key) as StripeJS);
           this.stripeChanged$.next(this.stripe);
         }
         return this.stripe;
@@ -78,9 +78,7 @@ export class StripeService {
     } else if (isPii(a) && isPiiData(b)) {
       return observableFrom(this.stripe.createToken(a, b));
     } else {
-      return observableFrom(
-        this.stripe.createToken(a as Element, b as CardDataOptions | undefined)
-      );
+      return observableFrom(this.stripe.createToken(a as Element, b as CardDataOptions | undefined));
     }
   }
 
@@ -89,15 +87,46 @@ export class StripeService {
     element: Element,
     cardSetupOptions?: SetupIntentData | undefined
   ): Observable<SetupIntentResult> {
-    return observableFrom(
-      this.stripe.handleCardSetup(clientSecret, element, cardSetupOptions)
-    );
+    return observableFrom(this.stripe.handleCardSetup(clientSecret, element, cardSetupOptions));
   }
 
-  public createSource(
-    a: Element | SourceData,
-    b?: SourceData | undefined
-  ): Observable<SourceResult> {
+  public handleCardPayment(
+    clientSecret: string,
+    element: Element,
+    cardSetupOptions?: CardPaymentData | undefined
+  ): Observable<PaymentIntentResult> {
+    return observableFrom(this.stripe.handleCardPayment(clientSecret, element, cardSetupOptions));
+  }
+
+  public handleCardAction(clientSecret: string): Observable<PaymentIntentResult> {
+    return observableFrom(this.stripe.handleCardAction(clientSecret));
+  }
+
+  public confirmPaymentIntent(
+    clientSecret: string,
+    element: Element,
+    intentOptions?: ConfirmIntentData | undefined
+  ): Observable<SetupIntentResult> {
+    return observableFrom(this.stripe.confirmPaymentIntent(clientSecret, element, intentOptions));
+  }
+
+  public retrievePaymentIntent(clientSecret: string): Observable<PaymentIntentResult> {
+    return observableFrom(this.stripe.retrievePaymentIntent(clientSecret));
+  }
+
+  public retrieveSetupIntent(clientSecret: string): Observable<SetupIntentResult> {
+    return observableFrom(this.stripe.retrieveSetupIntent(clientSecret));
+  }
+
+  public confirmSetupIntent(
+    clientSecret: string,
+    element: Element,
+    intentOptions?: ConfirmSetupIntentData | undefined
+  ): Observable<SetupIntentResult> {
+    return observableFrom(this.stripe.confirmSetupIntent(clientSecret, element, intentOptions));
+  }
+
+  public createSource(a: Element | SourceData, b?: SourceData | undefined): Observable<SourceResult> {
     if (isSourceData(a)) {
       return observableFrom(this.stripe.createSource(a as SourceData));
     }
