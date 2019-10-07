@@ -7,6 +7,7 @@
   - [Installation](#installation)
   - [Using the library](#using-the-library)
   - [StripeCardComponent](#stripecardcomponent)
+    - [Dynamic Stripe Keys](#dynamic-stripe-keys)
   - [Testing](#testing)
   - [Building](#building)
   - [Publishing](#publishing)
@@ -162,6 +163,31 @@ export class StripeTestComponent implements OnInit {
     });
   }
 }
+```
+
+### Dynamic Stripe Keys
+Given the way an AOT angular build processes provided values if you need to provide a stripe key at runtime you'll want to forgo the forRoot initialization and instead add a factory and provider
+
+```ts
+
+  export function NgxStripeFactory(): string {
+    return dynamicLocation.stripePkKey;
+  }
+  
+  @NgModule({
+    ...
+    imports: []
+      ...
+      NgxStripeModule.forRoot('whatever key you think should be default'),
+      ...
+    ]
+    providers: [
+      {
+        provide: STRIPE_PUBLISHABLE_KEY,
+        useFactory: NgxStripeFactory
+      }
+    ]
+  })
 ```
 
 ## Testing
