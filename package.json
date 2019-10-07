@@ -41,7 +41,6 @@
     "@angular/common": "~8.2.9",
     "@angular/core": "~8.2.9"
   },
-  "private": true,
   "dependencies": {},
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.8",
