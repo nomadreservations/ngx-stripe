@@ -22,6 +22,8 @@
 
 @angular wrapper for StripeJS based on module by Ricardo Sánchez Gregorio at https://github.com/richnologies/ngx-stripe
 
+_Note: This version is designed to work with angular v8+ only_
+
 ## Features
 
 * Stripe Service
