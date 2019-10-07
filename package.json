@@ -37,7 +37,10 @@
     "docs:publish": "run-s demo:aot:yalc && bash deploy-docs.sh",
     "doctoc": "doctoc README.md --maxlevel 3"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@angular/common": "~8.2.9",
+    "@angular/core": "~8.2.9"
+  },
   "private": true,
   "dependencies": {},
   "devDependencies": {
