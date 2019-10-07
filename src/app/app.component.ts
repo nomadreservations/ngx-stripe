@@ -1,6 +1,11 @@
 import { AfterContentInit, Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { Element as StripeElement, ElementOptions, ElementsOptions, StripeService } from '@nomadreservations/ngx-stripe';
+import {
+  Element as StripeElement,
+  ElementOptions,
+  ElementsOptions,
+  StripeService
+} from '@nomadreservations/ngx-stripe';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -10,12 +15,10 @@ import { environment } from 'src/environments/environment';
 })
 export class AppComponent implements AfterContentInit {
   error: any;
-  stripeKey = new FormControl('', [
-    Validators.required,
-    validateStripeTestKey
-  ]);
+  stripeKey = new FormControl('', [Validators.required, validateStripeTestKey]);
   keyError = 'Must be a valid publishable test key (e.g. beings with pk_test_)';
   complete = false;
+  complete2 = false;
   element: StripeElement;
   cardOptions: ElementOptions = {
     style: {
@@ -39,9 +42,9 @@ export class AppComponent implements AfterContentInit {
 
   token: any = {};
 
-  constructor(
-    private _stripe: StripeService
-  ) {}
+  constructor(private _stripe: StripeService) {
+    this.stripeKey.setValue('pk_test_LvFsCA53qJ7bOaOZlsCXYVsN');
+  }
 
   ngAfterContentInit() {
     this.keyUpdated();
@@ -50,7 +53,14 @@ export class AppComponent implements AfterContentInit {
   cardUpdated(result) {
     console.log(result);
     this.element = result.element;
-    this.complete = result.card.complete;
+    this.complete = result.complete;
+    this.error = undefined;
+  }
+
+  cardUpdated2(result) {
+    console.log('update second card', result);
+    this.element = result.element;
+    this.complete2 = result.complete;
     this.error = undefined;
   }
 
@@ -63,17 +73,19 @@ export class AppComponent implements AfterContentInit {
   }
 
   getCardToken() {
-    this._stripe.createToken(this.element, {
-      name: 'tested_ca',
-      address_line1: '123 A Place',
-      address_line2: 'Suite 100',
-      address_city: 'Irving',
-      address_state: 'BC',
-      address_zip: 'VOE 1H0',
-      address_country: 'CA'
-    }).subscribe(result => {
-      this.token = result;
-    });
+    this._stripe
+      .createToken(this.element, {
+        name: 'tested_ca',
+        address_line1: '123 A Place',
+        address_line2: 'Suite 100',
+        address_city: 'Irving',
+        address_state: 'BC',
+        address_zip: 'VOE 1H0',
+        address_country: 'CA'
+      })
+      .subscribe(result => {
+        this.token = result;
+      });
   }
 }
 
@@ -81,5 +93,5 @@ function validateStripeTestKey(control: FormControl) {
   if (control.value && control.value.match(/^pk_test_.+/)) {
     return;
   }
-  return {valid: false};
+  return { valid: false };
 }

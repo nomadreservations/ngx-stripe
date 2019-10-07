@@ -26,6 +26,10 @@
     </mat-error>
     <button mat-raised-button (click)="getCardToken()" color="primary" [disabled]="!complete">Get Card Token</button>
 
+
+    <ngx-stripe-card [elementTypes]="['cardNumber', 'cardExpiry', 'cardCvc', 'postalCode']" [options]="cardOptions" [elementsOptions]="elementsOptions" (change)="cardUpdated2($event)" (error)="error = $event"></ngx-stripe-card>
+    <button mat-raised-button (click)="getCardToken()" color="primary" [disabled]="!complete2">Get Card Token</button>
+
   </mat-card>
 
   <mat-card>

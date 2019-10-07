@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { Options, STRIPE_OPTIONS, STRIPE_PUBLISHABLE_KEY } from './interfaces/stripe';
 import { LazyStripeAPILoader } from './services/api-loader.service';
@@ -13,11 +14,12 @@ export interface NgxStripeModuleOptions {
 }
 
 @NgModule({
+  imports: [CommonModule],
   declarations: [StripeCardComponent],
   exports: [StripeCardComponent]
 })
 export class NgxStripeModule {
-  public static forRoot( publishableKey: string, options?: Options ): ModuleWithProviders {
+  public static forRoot(publishableKey: string, options?: Options): ModuleWithProviders {
     return {
       ngModule: NgxStripeModule,
       providers: [
