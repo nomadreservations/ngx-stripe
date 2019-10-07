@@ -17,7 +17,7 @@ export class StripeCardComponent implements OnInit {
   @Output()
   public error = new EventEmitter<any>();
 
-  @ViewChild('card')
+  @ViewChild('card', { static: true })
   private card?: ElementRef;
   private element?: StripeElement;
   @Input()
