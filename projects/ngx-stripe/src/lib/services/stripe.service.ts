@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { from as observableFrom, Observable, ReplaySubject } from 'rxjs';
 import { filter, map, publishLast, refCount, take } from 'rxjs/operators';
-import { Element } from '../interfaces/element';
+import { Element, RequestElementOptions } from '../interfaces/element';
 import { Elements, ElementsOptions } from '../interfaces/elements';
 import { isSourceData, SourceData, SourceParams, SourceResult } from '../interfaces/sources';
 import { Options, StripeJS, STRIPE_OPTIONS, STRIPE_PUBLISHABLE_KEY } from '../interfaces/stripe';
@@ -80,6 +80,10 @@ export class StripeService {
     } else {
       return observableFrom(this.stripe.createToken(a as Element, b as CardDataOptions | undefined));
     }
+  }
+
+  public paymentRequest(options: RequestElementOptions): Observable<Element> {
+    return this.stripeChanged$.pipe(map(() => this.stripe.paymentRequest(options)));
   }
 
   public handleCardSetup(

@@ -30,6 +30,18 @@
     <ngx-stripe-card [elementTypes]="['cardNumber', 'cardExpiry', 'cardCvc', 'postalCode']" [options]="cardOptions" [elementsOptions]="elementsOptions" (change)="cardUpdated2($event)" (error)="error = $event"></ngx-stripe-card>
     <button mat-raised-button (click)="getCardToken()" color="primary" [disabled]="!complete2">Get Card Token</button>
 
+    <br/>
+
+    Pay: <mat-slider min="1" max="100" step="10" thumbLabel [value]="pay" (valueChange)="updatePay($event)"></mat-slider>
+    <ngx-payment-request 
+      [options]="requestOptions" 
+      [elementsOptions]="elementsOptions" 
+      [styles]="styles" 
+      (shippingAddressChange)="updateShippingAddress($event)"
+      (shippingOptionChange)="updateShippingOption($event)"
+      (change)="requestUpdated($event)">
+    </ngx-payment-request>
+
   </mat-card>
 
   <mat-card>

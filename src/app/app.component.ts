@@ -6,6 +6,7 @@ import {
   ElementsOptions,
   StripeService
 } from '@nomadreservations/ngx-stripe';
+import { PaymentRequestButtonStyle, RequestElementOptions } from 'projects/ngx-stripe/src/lib/interfaces/element';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -36,9 +37,30 @@ export class AppComponent implements AfterContentInit {
     }
   };
 
+  requestOptions: RequestElementOptions = {
+    country: 'US',
+    currency: 'usd',
+    requestPayerName: true,
+    requestPayerEmail: true,
+    requestPayerPhone: true,
+    requestShipping: true,
+    total: {
+      amount: 10000,
+      label: 'Donate to the things'
+    }
+  };
+
+  styles: PaymentRequestButtonStyle = {
+    type: 'donate',
+    theme: 'light',
+    height: '64px'
+  };
+
   elementsOptions: ElementsOptions = {
     locale: 'en'
   };
+
+  public pay = 100;
 
   token: any = {};
 
@@ -70,6 +92,53 @@ export class AppComponent implements AfterContentInit {
     } else if (environment.stripeKey) {
       this._stripe.changeKey(environment.stripeKey);
     }
+  }
+
+  updatePay(amount: number) {
+    this.pay = amount;
+    this.requestOptions = {
+      ...this.requestOptions,
+      total: {
+        ...this.requestOptions.total,
+        amount: amount * 100
+      }
+    };
+  }
+
+  requestUpdated(result) {
+    console.log('updated token ', result);
+    this.token = result;
+    // if the server completes payment call this
+    result.complete('success');
+    // if the server fails to complete payment call this instead
+    // result.complete('fail');
+  }
+
+  updateShippingAddress(result) {
+    console.log('shipping address change', result);
+    result.updateWith({
+      status: 'success',
+      shippingOptions: [
+        {
+          id: 'free-shipping',
+          label: 'Free shipping',
+          detail: 'Arrives in 5 to 7 days',
+          amount: 0
+        },
+        {
+          id: 'express',
+          label: 'Express shipping',
+          detail: 'Arrives in 1 to 2 days',
+          amount: 1000
+        }
+      ]
+    });
+  }
+  updateShippingOption(result) {
+    console.log('shipping option change', result);
+    result.updateWith({
+      status: 'success'
+    });
   }
 
   getCardToken() {

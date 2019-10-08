@@ -198,6 +198,25 @@ export interface Address {
   state?: string;
 }
 
+export interface ShippingOptions {
+  id: string;
+  label: string;
+  detail: string;
+  amount: number;
+}
+
+export interface ShippingAddress {
+  country?: string;
+  addressLine?: string;
+  region?: string;
+  city?: string;
+  postalCode?: string;
+  recipient?: string;
+  phone?: string;
+  sortingCode?: string;
+  dependentLocality?: string;
+}
+
 export interface PaymentIntent {
   id: string;
   object: 'payment_intent';

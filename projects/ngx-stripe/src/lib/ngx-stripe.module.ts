@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { Options, STRIPE_OPTIONS, STRIPE_PUBLISHABLE_KEY } from './interfaces/stripe';
+import { PaymentRequestComponent } from './payment-request.component';
 import { LazyStripeAPILoader } from './services/api-loader.service';
 import { DocumentRef } from './services/document-ref.service';
 import { PlatformService } from './services/platform.service';
@@ -15,8 +16,8 @@ export interface NgxStripeModuleOptions {
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [StripeCardComponent],
-  exports: [StripeCardComponent]
+  declarations: [StripeCardComponent, PaymentRequestComponent],
+  exports: [StripeCardComponent, PaymentRequestComponent]
 })
 export class NgxStripeModule {
   public static forRoot(publishableKey: string, options?: Options): ModuleWithProviders {

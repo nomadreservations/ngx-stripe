@@ -1,4 +1,4 @@
-import { ElementType, ElementOptions, Element } from './element';
+import { Element, ElementOptions, ElementType } from './element';
 
 export interface Elements {
   create(type: ElementType, options: ElementOptions): Element;
@@ -6,20 +6,7 @@ export interface Elements {
 
 export interface ElementsOptions {
   fonts?: FontElement[];
-  locale?:
-    | 'auto'
-    | 'da'
-    | 'de'
-    | 'en'
-    | 'es'
-    | 'fi'
-    | 'fr'
-    | 'it'
-    | 'ja'
-    | 'no'
-    | 'nl'
-    | 'sv'
-    | 'zh';
+  locale?: 'auto' | 'da' | 'de' | 'en' | 'es' | 'fi' | 'fr' | 'it' | 'ja' | 'no' | 'nl' | 'sv' | 'zh';
 }
 
 export type FontElement = FontCSSElement | FontConfigElement;
@@ -33,13 +20,5 @@ export interface FontConfigElement {
   src?: string;
   style?: 'normal' | 'italic' | 'oblique';
   unicodeRange?: string;
-  weight?:
-    | 'normal'
-    | 'bold'
-    | 'lighter'
-    | 'bolder'
-    | 'inherit'
-    | 'initial'
-    | 'unset'
-    | number;
+  weight?: 'normal' | 'bold' | 'lighter' | 'bolder' | 'inherit' | 'initial' | 'unset' | number;
 }
