@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/ng-packagr/package.schema.json",
   "name": "@nomadreservations/ngx-stripe",
-  "version": "1.2.0-beta.4",
+  "version": "1.2.0-beta.5",
   "description": "@angular wrapper for StripeJS",
   "repository": {
     "type": "git",
