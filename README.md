@@ -7,6 +7,7 @@
   - [Installation](#installation)
   - [Using the library](#using-the-library)
   - [StripeCardComponent](#stripecardcomponent)
+    - [RequestPaymentButton](#requestpaymentbutton)
     - [Dynamic Stripe Keys](#dynamic-stripe-keys)
   - [Testing](#testing)
   - [Building](#building)
@@ -89,7 +90,7 @@ To fetch the Stripe Element, you could you use either the (change) output, or,
 by using a ViewChild, the public method getCard()
 
 //stripe.compnent.html
-```xml
+```html
 <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions" (change)="cardUpdated($event)" (error)="error = $event"></ngx-stripe-card>
 <div class="error">
   {{error?.message}}
@@ -163,6 +164,118 @@ export class StripeTestComponent implements OnInit {
     });
   }
 }
+```
+
+### RequestPaymentButton
+A payment request button (e.g. apple pay, google chrome payment, etc.) can be enabled with the `ngx-payment-request` component. All of the options [Request Payment Api](https://stripe.com/docs/payment-request-api) options are exposed via the three options sections in the component. 
+
+// request-button.component.html
+```html
+<div class="container">
+  <mat-card>
+    Pay: <mat-slider min="1" max="100" step="10" thumbLabel [value]="pay" (valueChange)="updatePay($event)"></mat-slider>
+    <ngx-payment-request 
+      [options]="requestOptions" 
+      [elementsOptions]="elementsOptions" 
+      [styles]="styles" 
+      (shippingAddressChange)="updateShippingAddress($event)"
+      (shippingOptionChange)="updateShippingOption($event)"
+      (change)="requestUpdated($event)">
+    </ngx-payment-request>
+
+  </mat-card>
+```
+
+// request-button.compnent.ts
+```typescript
+@Component({
+  selector: 'app-test',
+  templateUrl: 'request-button.component.html'
+})
+export class RequestButtonComponent implements OnInit {
+  @Input set stripeKey(key) {
+    this._stripe.changeKey(key);
+  }
+
+  public requestOptions: RequestElementOptions = {
+    country: 'US',
+    currency: 'usd',
+    requestPayerName: true,
+    requestPayerEmail: true,
+    requestPayerPhone: true,
+    requestShipping: true,
+    total: {
+      amount: 10000,
+      label: 'Donate to the things'
+    }
+  };
+
+  public styles: PaymentRequestButtonStyle = {
+    type: 'donate',
+    theme: 'light',
+    height: '64px'
+  };
+
+  public elementsOptions: ElementsOptions = {
+    locale: 'en'
+  };
+
+  public pay = 100;
+
+  constructor(private _stripe: StripeService) { }
+  
+  public updatePay(amount: number) {
+    this.pay = amount;
+    this.requestOptions = {
+      ...this.requestOptions,
+      total: {
+        ...this.requestOptions.total,
+        amount: amount * 100
+      }
+    };
+  }
+
+  public async requestUpdated(result) {
+    const response = await fetch('/charges', {
+      method: 'POST',
+      body: JSON.stringify({token: result.token.id}),
+      headers: {'content-type': 'application/json'},
+    });
+
+    if (response.ok) {
+      result.complete('success');
+    } else {
+      result.complete('fail');
+    }    
+  }
+
+  public updateShippingAddress(result) {
+    result.updateWith({
+      status: 'success',
+      shippingOptions: [
+        {
+          id: 'free-shipping',
+          label: 'Free shipping',
+          detail: 'Arrives in 5 to 7 days',
+          amount: 0
+        },
+        {
+          id: 'express',
+          label: 'Express shipping',
+          detail: 'Arrives in 1 to 2 days',
+          amount: 1000
+        }
+      ]
+    });
+  }
+
+  public updateShippingOption(result) {
+    result.updateWith({
+      status: 'success'
+    });
+  }
+}
+
 ```
 
 ### Dynamic Stripe Keys
