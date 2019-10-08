@@ -9,6 +9,8 @@
   - [StripeCardComponent](#stripecardcomponent)
     - [RequestPaymentButton](#requestpaymentbutton)
     - [Dynamic Stripe Keys](#dynamic-stripe-keys)
+    - [PaymentIntents](#paymentintents)
+    - [SCA/3D Secure payments](#sca3d-secure-payments)
   - [Testing](#testing)
   - [Building](#building)
   - [Publishing](#publishing)
@@ -302,6 +304,110 @@ Given the way an AOT angular build processes provided values if you need to prov
     ]
   })
 ```
+
+### PaymentIntents
+You can use the payment intents api with this service just like with stripe.js the following are exposed via the `StripeService`
+
+```ts
+  handleCardSetup(clientSecret: string, el: Element, cardSetupOptions?: SetupIntentData): Promise<SetupIntentResult>;
+  handleCardAction(clientSecret: string);
+  handleCardPayment(clientSecret: string, el: Element, data: CardPaymentData);
+  confirmPaymentIntent(clientSecret: string, el: Element, data: ConfirmIntentData);
+  retrievePaymentIntent(clientSecret: string);
+  confirmSetupIntent(clientSecret: string, el: Element, data: ConfirmSetupIntentData);
+  retrieveSetupIntent(clientSecret: string);
+```
+
+### SCA/3D Secure payments
+
+3D Secure payments are enabled by following a [3D Secure Flow](https://stripe.com/docs/payments/3d-secure#example-of-a-3d-secure-2-flow) using the payment intents api's. You will need to setup a proper next action in the payment intent based off of the 3D Secure response from the customers bank/institution. 
+
+Example:
+//stripe.compnent.html
+```html
+<ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions" (change)="cardUpdated($event)" (error)="error = $event"></ngx-stripe-card>
+<div class="error">
+  {{error?.message}}
+</div>
+<button (click)="payNow()" [disabled]="!complete">Pay</button>
+```
+
+//stripe.component.ts
+```typescript
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+
+import { StripeService, StripeCardComponent, ElementOptions, ElementsOptions } from "@nomadreservations/ngx-stripe";
+
+
+@Component({
+  selector: 'app-stripe-test',
+  templateUrl: 'stripe.component.html'
+})
+export class StripeTestComponent implements OnInit {
+  stripeKey = '';
+  error: any;
+  complete = false;
+  element: StripeElement;
+  cardOptions: ElementOptions = {
+    style: {
+      base: {
+        iconColor: '#276fd3',
+        color: '#31325F',
+        lineHeight: '40px',
+        fontWeight: 300,
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSize: '18px',
+        '::placeholder': {
+          color: '#CFD7E0'
+        }
+      }
+    }
+  };
+
+  elementsOptions: ElementsOptions = {
+    locale: 'en'
+  };
+
+  constructor(
+    private _stripe: StripeService
+  ) {}
+
+  cardUpdated(result) {
+    this.element = result.element;
+    this.complete = result.card.complete;
+    if(this.complete) {
+      this._stripe.
+    }
+    this.error = undefined;
+  }
+
+  keyUpdated() {
+    this._stripe.changeKey(this.stripeKey);
+  }
+
+  async payNow() {
+    const response = await fetch('/paymentIntent', {
+      method: 'POST',
+      body: JSON.stringify({amount: 10000, currency: 'usd'}),
+      headers: {'content-type': 'application/json'},
+    });
+
+    const body = await response.json();
+    this._stripe.handleCardPayment(body.client_secret, this.element, { payment_method_data: {
+      billing_details: {name: 'Bob Smith'}
+    }}).subscribe(result => {
+      if(result.error) {
+        console.error('got stripe error', result.error);
+      } else {
+        console.log('payment succeeded');
+      }
+    });
+  }
+}
+```
+
+Please note you can also manually handle this flow using the paymentIntent methods however that is not the default path and you will have to implement it yourself (see more [here](https://stripe.com/docs/payments/3d-secure))
 
 ## Testing
 The following command runs unit & integration tests that are in the `tests` folder, and unit tests that are in `src` folder:
