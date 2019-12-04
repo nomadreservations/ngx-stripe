@@ -65,7 +65,7 @@ export class AppComponent implements AfterContentInit {
   token: any = {};
 
   constructor(private _stripe: StripeService) {
-    this.stripeKey.setValue('...');
+    this.stripeKey.setValue('');
   }
 
   ngAfterContentInit() {

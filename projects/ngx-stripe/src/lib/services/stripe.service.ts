@@ -1,3 +1,5 @@
+declare var Stripe;
+
 import { Inject, Injectable } from '@angular/core';
 import { from as observableFrom, Observable, ReplaySubject } from 'rxjs';
 import { filter, map, publishLast, refCount, take } from 'rxjs/operators';
