@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Stripe Charge Test</h1>
+<div mat-dialog-content>
+  <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions" (change)="cardUpdated($event)" (error)="error = $event"></ngx-stripe-card>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="close()">Cancel</button>
+  <button mat-flat-button (click)="getCardToken()" [disabled]="!complete" color="primary">Get Token</button>
+</div>

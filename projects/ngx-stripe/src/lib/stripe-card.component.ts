@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { BehaviorSubject, combineLatest as observableCombineLatest, Observable } from 'rxjs';
 import { filter, switchMap } from 'rxjs/operators';
 import { Element as StripeElement, ElementOptions, ElementType } from './interfaces/element';
@@ -13,7 +13,7 @@ import { StripeService } from './services/stripe.service';
     </div>
   `
 })
-export class StripeCardComponent implements OnInit {
+export class StripeCardComponent implements AfterViewInit {
   @Input()
   private set options(optionsIn: ElementOptions) {
     this.options$.next(optionsIn);
@@ -30,14 +30,13 @@ export class StripeCardComponent implements OnInit {
   @Output() public error = new EventEmitter<any>();
   @Input() public elementTypes: Array<ElementType> = ['card'];
 
-  @ViewChild('card', { static: false })
-  private card?: ElementRef;
+  @ViewChild('card', { static: false }) private card: ElementRef;
   private cardElement?: StripeElement;
   private elements?: Array<StripeElement>;
   private options$ = new BehaviorSubject<ElementOptions>({});
   private elementsOptions$ = new BehaviorSubject<ElementsOptions>({});
 
-  public ngOnInit() {
+  public ngAfterViewInit(): void {
     const elements$: Observable<Elements> = this.elementsOptions$.asObservable().pipe(
       switchMap(options => {
         if (Object.keys(options).length > 0) {

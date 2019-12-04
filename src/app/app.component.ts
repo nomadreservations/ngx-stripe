@@ -1,5 +1,6 @@
 import { AfterContentInit, Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material';
 import {
   Element as StripeElement,
   ElementOptions,
@@ -8,6 +9,7 @@ import {
 } from '@nomadreservations/ngx-stripe';
 import { PaymentRequestButtonStyle, RequestElementOptions } from 'projects/ngx-stripe/src/lib/interfaces/element';
 import { environment } from 'src/environments/environment';
+import { DialogComponent } from './dialog/dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -64,7 +66,7 @@ export class AppComponent implements AfterContentInit {
 
   token: any = {};
 
-  constructor(private _stripe: StripeService) {
+  constructor(private _stripe: StripeService, private _dialog: MatDialog) {
     this.stripeKey.setValue('');
   }
 
@@ -103,6 +105,16 @@ export class AppComponent implements AfterContentInit {
         amount: amount * 100
       }
     };
+  }
+
+  openPaymentDialog(): void {
+    const dialogRef = this._dialog.open(DialogComponent, {
+      width: '370px',
+      data: { key: this.stripeKey }
+    });
+    dialogRef.afterClosed().subscribe(token => {
+      this.token = token;
+    });
   }
 
   requestUpdated(result) {
