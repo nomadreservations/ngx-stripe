@@ -1,3 +1,5 @@
+import { PaymentMethodParams, PaymentMethodResult } from './../interfaces/payment-method';
+import { BillingDetails } from './../interfaces/token';
 declare var Stripe;
 
 import { Inject, Injectable } from '@angular/core';
@@ -141,5 +143,9 @@ export class StripeService {
 
   public retrieveSource(source: SourceParams): Observable<SourceResult> {
     return observableFrom(this.stripe.retrieveSource(source));
+  }
+
+  public createPaymentMethod(paymentMethod: PaymentMethodParams): Observable<PaymentMethodResult> {
+    return observableFrom(this.stripe.createPaymentMethod(paymentMethod));
   }
 }

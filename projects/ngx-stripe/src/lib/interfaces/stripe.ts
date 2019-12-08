@@ -1,3 +1,4 @@
+import { PaymentMethodParams, PaymentMethodResult } from './payment-method';
 import { InjectionToken } from '@angular/core';
 import { Element, RequestElementOptions } from './element';
 import { Elements, ElementsOptions } from './elements';
@@ -35,6 +36,7 @@ export interface StripeJS {
   confirmSetupIntent(clientSecret: string, el: Element, data: ConfirmSetupIntentData);
   retrieveSetupIntent(clientSecret: string);
   retrieveSource(source: SourceParams): Promise<SourceResult>;
+  createPaymentMethod(paymentMethod: PaymentMethodParams): Promise<PaymentMethodResult>;
 }
 
 export interface Options {
