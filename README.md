@@ -21,7 +21,7 @@
 
 # @nomadreservations/ngx-stripe
 
-[![version](https://img.shields.io/npm/v/ngx-stripe.svg)](https://www.npmjs.com/package/@nomadreservations/ngx-stripe)
+[![version](https://img.shields.io/npm/v/@nomadreservations/ngx-stripe.svg)](https://www.npmjs.com/package/@nomadreservations/ngx-stripe)
 [![license](https://img.shields.io/npm/l/express.svg)](https://www.npmjs.com/package/@nomadreservations/ngx-stripe)
 
 @angular wrapper for StripeJS based on module by Ricardo Sánchez Gregorio at https://github.com/richnologies/ngx-stripe
