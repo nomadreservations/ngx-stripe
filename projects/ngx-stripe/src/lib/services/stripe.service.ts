@@ -1,5 +1,4 @@
 import { PaymentMethodParams, PaymentMethodResult } from './../interfaces/payment-method';
-import { BillingDetails } from './../interfaces/token';
 declare var Stripe;
 
 import { Inject, Injectable } from '@angular/core';
