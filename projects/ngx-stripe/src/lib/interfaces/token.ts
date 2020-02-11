@@ -282,3 +282,7 @@ export interface CardPaymentData {
   save_payment_method?: boolean;
   setup_future_usage?: string;
 }
+
+export interface ConfirmCardPaymentOptions {
+  handleActions?: boolean
+}

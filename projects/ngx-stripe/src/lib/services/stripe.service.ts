@@ -24,7 +24,8 @@ import {
   PiiData,
   SetupIntentData,
   SetupIntentResult,
-  TokenResult
+  TokenResult,
+  ConfirmCardPaymentOptions
 } from '../interfaces/token';
 import { LazyStripeAPILoader, Status } from './api-loader.service';
 import { PlatformService } from './platform.service';
@@ -115,6 +116,15 @@ export class StripeService {
     intentOptions?: ConfirmIntentData | undefined
   ): Observable<SetupIntentResult> {
     return observableFrom(this.stripe.confirmPaymentIntent(clientSecret, element, intentOptions));
+  }
+
+  public confirmCardPayment(
+    clientSecret: string,
+    element: Element,
+    intentOptions?: ConfirmIntentData | undefined,
+    options?: ConfirmCardPaymentOptions | undefined
+  ): Observable<SetupIntentResult> {
+    return observableFrom(this.stripe.confirmCardPayment(clientSecret, element, intentOptions, options));
   }
 
   public retrievePaymentIntent(clientSecret: string): Observable<PaymentIntentResult> {
