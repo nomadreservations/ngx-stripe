@@ -13,6 +13,9 @@ import {
   BankAccountData,
   CardDataOptions,
   CardPaymentData,
+  ConfirmCardPaymentData,
+  ConfirmCardPaymentOptions,
+  ConfirmCardPaymentResult,
   ConfirmIntentData,
   ConfirmSetupIntentData,
   isBankAccount,
@@ -115,6 +118,14 @@ export class StripeService {
     intentOptions?: ConfirmIntentData | undefined
   ): Observable<SetupIntentResult> {
     return observableFrom(this.stripe.confirmPaymentIntent(clientSecret, element, intentOptions));
+  }
+
+  public confirmCardPayment(
+    clientSecret: string,
+    data: ConfirmCardPaymentData,
+    options?: ConfirmCardPaymentOptions | undefined
+  ): Observable<ConfirmCardPaymentResult> {
+    return observableFrom(this.stripe.confirmCardPayment(clientSecret, data, options));
   }
 
   public retrievePaymentIntent(clientSecret: string): Observable<PaymentIntentResult> {
