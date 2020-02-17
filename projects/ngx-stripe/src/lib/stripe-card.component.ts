@@ -30,7 +30,7 @@ export class StripeCardComponent implements AfterViewInit {
   @Output() public error = new EventEmitter<any>();
   @Input() public elementTypes: Array<ElementType> = ['card'];
 
-  @ViewChild('card', { static: false }) private card: ElementRef;
+  @ViewChild('card') private card: ElementRef;
   private cardElement?: StripeElement;
   private elements?: Array<StripeElement>;
   private options$ = new BehaviorSubject<ElementOptions>({});
