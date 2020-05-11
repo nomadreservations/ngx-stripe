@@ -1,6 +1,6 @@
 import { AfterContentInit, Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import {
   Element as StripeElement,
   ElementOptions,

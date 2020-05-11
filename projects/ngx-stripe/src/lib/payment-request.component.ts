@@ -65,7 +65,7 @@ export class PaymentRequestComponent implements OnInit, AfterViewInit {
 
   public hide = false;
 
-  @ViewChild('request', { static: false }) private requestButton?: ElementRef;
+  @ViewChild('request') private requestButton?: ElementRef;
   private styles$ = new BehaviorSubject<PaymentRequestButtonStyle>({});
   private options$ = new ReplaySubject<RequestElementOptions>();
   private elementsOptions$ = new BehaviorSubject<ElementsOptions>({});
