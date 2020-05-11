@@ -1,4 +1,5 @@
 import { Error } from './utils';
+import { PaymentMethodParams } from './payment-method';
 
 export interface Token {
   id: string;
@@ -281,4 +282,22 @@ export interface CardPaymentData {
   receipt_email?: string;
   save_payment_method?: boolean;
   setup_future_usage?: string;
+}
+
+export interface ConfirmCardPaymentData {
+  payment_method?: PaymentMethodParams | string;
+  shipping?: Shipping;
+  return_url?: string;
+  receipt_email?: string;
+  save_payment_method?: boolean;
+  setup_future_usage?: boolean;
+}
+
+export interface ConfirmCardPaymentOptions {
+  handleActions?: boolean;
+}
+
+export interface ConfirmCardPaymentResult {
+  paymentIntent?: PaymentIntent;
+  error?: Error;
 }

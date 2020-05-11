@@ -8,6 +8,9 @@ import {
   BankAccountData,
   CardDataOptions,
   CardPaymentData,
+  ConfirmCardPaymentData,
+  ConfirmCardPaymentOptions,
+  ConfirmCardPaymentResult,
   ConfirmIntentData,
   ConfirmSetupIntentData,
   Pii,
@@ -32,6 +35,7 @@ export interface StripeJS {
   handleCardAction(clientSecret: string);
   handleCardPayment(clientSecret: string, el: Element, data: CardPaymentData);
   confirmPaymentIntent(clientSecret: string, el: Element, data: ConfirmIntentData);
+  confirmCardPayment(clientSecret: string, data: ConfirmCardPaymentData, options: ConfirmCardPaymentOptions): Promise<ConfirmCardPaymentResult>;
   retrievePaymentIntent(clientSecret: string);
   confirmSetupIntent(clientSecret: string, el: Element, data: ConfirmSetupIntentData);
   retrieveSetupIntent(clientSecret: string);
