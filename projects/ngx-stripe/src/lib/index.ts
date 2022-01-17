@@ -12,4 +12,5 @@ export { PlatformService } from './services/platform.service';
 export { StripeService } from './services/stripe.service';
 export { WindowRef } from './services/window-ref.service';
 export { StripeCardComponent } from './stripe-card.component';
+export { PaymentRequestComponent } from './payment-request.component';
 

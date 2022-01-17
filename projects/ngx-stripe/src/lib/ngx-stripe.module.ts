@@ -20,7 +20,7 @@ export interface NgxStripeModuleOptions {
   exports: [StripeCardComponent, PaymentRequestComponent]
 })
 export class NgxStripeModule {
-  public static forRoot(publishableKey: string, options?: Options): ModuleWithProviders {
+  public static forRoot(publishableKey: string, options?: Options): ModuleWithProviders<NgxStripeModule> {
     return {
       ngModule: NgxStripeModule,
       providers: [
