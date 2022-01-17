@@ -1,6 +1,5 @@
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
-$mdi-font-path: "../node_modules/mdi/fonts";
-@import '~mdi/scss/materialdesignicons';
+@import '~@mdi/font/scss/materialdesignicons';
 
 body {
 	font-family: Raleway;
