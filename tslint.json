@@ -25,6 +25,9 @@
       "no-internal-module": true,
       "no-var-requires": false,
       "typedef": false,
+      "deprecation": {
+        "severity": "warning"
+      },
       "typedef-whitespace": [
         true,
         {
@@ -67,8 +70,6 @@
       "no-string-literal": false,
       "no-switch-case-fall-through": true,
       "no-unused-expression": true,
-      "no-unused-variable": true,
-      "no-use-before-declare": true,
       "no-var-keyword": true,
       "radix": true,
       "switch-default": true,
