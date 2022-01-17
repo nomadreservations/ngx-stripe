@@ -60,7 +60,6 @@
     "@types/node": "^12.11.1",
     "auto-changelog": "^1.16.1",
     "codelyzer": "^6.0.0",
-    "core-js": "^3.2.1",
     "doctoc": "^1.4.0",
     "fstream": "^1.0.12",
     "hammerjs": "^2.0.8",
@@ -88,5 +87,6 @@
     "lib": {
       "entryFile": "projects/ngx-stripe/src/public_api.ts"
     }
-  }
+  },
+  "dependencies": {}
 }
