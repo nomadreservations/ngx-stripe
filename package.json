@@ -39,7 +39,7 @@
   },
   "peerDependencies": {
     "@angular/common": "~8.2.9",
-    "@angular/core": "~8.2.9"
+    "@angular/core": "~11.0.5"
   },
   "dependencies": {},
   "devDependencies": {
@@ -50,7 +50,7 @@
     "@angular/common": "~8.2.9",
     "@angular/compiler": "~8.2.9",
     "@angular/compiler-cli": "~8.2.9",
-    "@angular/core": "~8.2.9",
+    "@angular/core": "~11.0.5",
     "@angular/forms": "~8.2.9",
     "@angular/language-service": "~8.2.9",
     "@angular/material": "^8.2.2",
